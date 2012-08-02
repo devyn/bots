@@ -127,20 +127,30 @@ Bot.prototype.step = function (dt, width, height) {
   this.x += (cos_a*this.vx - sin_a*this.vy)*s;
   this.y += (cos_a*this.vy - sin_a*this.vx)*s;
 
+  var collision = false;
+
   if (this.x-this.radius < 0) {
     this.x = this.radius;
+    collision = true;
   }
 
   if (this.y-this.radius < 0) {
     this.y = this.radius;
+    collision = true;
   }
 
   if (width && this.x+this.radius >= width) {
-    this.x = width-this.radius;
+    this.x = width-this.radius-1;
+    collision = true;
   }
 
   if (height && this.y+this.radius >= height) {
-    this.y = height-this.radius;
+    this.y = height-this.radius-1;
+    collision = true;
+  }
+
+  if (collision) {
+    this.script.postMessage({type: "collision"});
   }
 
   this.target = this.trace();

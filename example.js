@@ -6,6 +6,7 @@ var timer
 function identify() {
 	identify_queue.push(function (identity) {
 		if (identity) {
+			postMessage({type: "log", message: "identified "+identity.type+" "+identity.name});
 			evade(search);
 		} else {
 			timer = setTimeout(search, 250);
@@ -49,6 +50,7 @@ function search() {
 
 function stop() {
 	clearTimeout(timer);
+	timer = null;
 	trace_queue    = [];
 	identify_queue = [];
 }
@@ -64,6 +66,14 @@ function identifiedBy(angle, direction) {
 	timer = setTimeout(function () {
 		identify();
 	}, angle/Math.PI*sign*1000);
+}
+
+function collision() {
+	stop();
+
+	postMessage({type: "update", vx: 0, vy: 40, va: Math.PI});
+
+	timer = setTimeout(search, 1000);
 }
 
 onmessage = function (event) {
@@ -88,6 +98,9 @@ onmessage = function (event) {
 			break;
 		case "identified_by":
 			identifiedBy(message.angle, message.direction);
+			break;
+		case "collision":
+			collision();
 			break;
 	}
 };
