@@ -155,7 +155,7 @@ Bot.prototype.step = function (dt, width, height) {
   if (collision && !this.collision) {
     this.collision = true;
     this.script.postMessage({type: "collision"});
-  } else {
+  } else if (!collision && this.collision) {
     this.collision = false;
   }
 
