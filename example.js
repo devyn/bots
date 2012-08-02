@@ -21,18 +21,30 @@ function evade(then) {
 	setTimeout(then, 1000);
 }
 
-function search() {
+var sc = 0;
+
+function changeSearchRoute() {
+	postMessage({type: "update", vx: 40, vy: 0, va: Math.PI*(Math.random()-0.5)});
+}
+
+function continueSearch() {
 	trace_queue.push(function (distance) {
 		if (distance) {
 			identify();
 		} else {
-			postMessage({type: "update", vx: 30, vy: 0, va: Math.PI/4});
+			if (++sc >= 3) { sc = 0; changeSearchRoute(); }
 
-			timer = setTimeout(search, 250);
+			timer = setTimeout(continueSearch, 250);
 		}
 	});
 
 	postMessage({type: "trace"});
+}
+
+function search() {
+	sc = 0;
+	changeSearchRoute();
+	continueSearch();
 }
 
 function stop() {
