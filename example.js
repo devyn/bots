@@ -73,11 +73,10 @@ function identifiedBy(angle, distance) {
   var sign = 1;
   if (angle < 0) sign = -1;
 
-  postMessage({type: "update", vx: 0, vy: 0, va: Math.PI * sign});
+  postMessage({type: "update", vx: 0, vy: 0, va: angle});
 
-  timer = setTimeout(function () {
-    identify();
-  }, Math.abs(angle/Math.PI)*1000);
+  sc = 0;
+  continueSearch();
 }
 
 function collision() {
