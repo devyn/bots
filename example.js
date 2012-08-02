@@ -69,6 +69,8 @@ function continueSearch() {
 function search() {
   stop();
 
+  log("Searching.");
+
   sc = 0;
   changeSearchRoute();
   continueSearch();
