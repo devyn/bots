@@ -66,11 +66,13 @@ Bot.prototype.processMessage = function (message) {
 Bot.prototype.identify = function (from) {
   var d_x      = from.x - this.x
     , d_y      = from.y - this.y
-    , origin_a = Math.atan2(Math.sin(from.a), Math.cos(from.a)) - Math.atan2(d_y, d_x)
+    , origin_a = from.a - Math.atan2(d_y, d_x) + Math.PI/2
     , origin_d = Math.sqrt(d_x*d_x + d_y*d_y)
     ;
 
-  this.script.postMessage({type: "identified_by", angle: origin_a, distance: origin_d});
+  this.script.postMessage({type:     "identified_by",
+                           angle:    Math.atan2(Math.sin(origin_a), Math.cos(origin_a)),
+                           distance: origin_d});
 
   return {type: "bot", name: this.name};
 };
