@@ -83,7 +83,7 @@ function identifiedBy(angle, distance) {
 function collision() {
   stop();
 
-  postMessage({type: "update", vx: 0, vy: -40, va: Math.PI/8});
+  postMessage({type: "update", vx: 0, vy: 20, va: Math.PI});
 
   timer = setTimeout(search, 1000);
 }
