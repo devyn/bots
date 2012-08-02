@@ -3,12 +3,17 @@ var timer
 	, identify_queue = []
 	;
 
+function log(message) {
+	postMessage({type: "log", message: message});
+}
+
 function identify() {
 	identify_queue.push(function (identity) {
 		if (identity) {
-			postMessage({type: "log", message: "identified "+identity.type+" "+identity.name});
+			log("I've identified the "+identity.type+", "+identity.name);
 			evade(search);
 		} else {
+			log("I don't know what that is. Continuing search.");
 			timer = setTimeout(search, 250);
 		}
 	});
@@ -31,6 +36,7 @@ function changeSearchRoute() {
 function continueSearch() {
 	trace_queue.push(function (distance) {
 		if (distance) {
+			log("I saw something " + distance + " away. Checking it out.");
 			identify();
 		} else {
 			if (++sc >= 3) { sc = 0; changeSearchRoute(); }
