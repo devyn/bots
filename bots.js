@@ -29,12 +29,13 @@ function Bot(name, script) {
   this.script = new Worker(script);
 
   var bot = this;
-  script.onmessage = function (event) {
+  this.script.onmessage = function (event) {
     bot.processMessage(event.data);
   };
 }
 
 Bot.prototype.processMessage = function (message) {
+  console.log(message);
   switch (message.type) {
     case "log":
       console.log("<"+this.name+"> "+msg[1]);
