@@ -9,7 +9,7 @@ var colors = {
   7: ["#000", "#fff"]
 };
 
-function Bot(name) {
+function Bot(name, script) {
   this.name   = name;
   this.color  = colors[Math.floor(Math.random() * 8)];
   this.radius = 10;
@@ -25,9 +25,52 @@ function Bot(name) {
   this.va   = 0; // radians per second
 
   this.target = this.trace();
+
+  this.script = new Worker(script);
+
+  var bot = this;
+  script.onmessage = function (event) {
+    bot.processMessage(event.data);
+  };
 }
 
-Bot.prototype.think = function () {
+Bot.prototype.processMessage = function (message) {
+  switch (message.type) {
+    case "log":
+      console.log("<"+this.name+"> "+msg[1]);
+      break;
+    case "update":
+      if (message.hasOwnProperty("vx")) this.vx = parseFloat(message.vx);
+      if (message.hasOwnProperty("vy")) this.vy = parseFloat(message.vy);
+      if (message.hasOwnProperty("va")) this.va = parseFloat(message.va);
+      break;
+    case "trace":
+      if (this.target) {
+        this.script.postMessage({type: "trace_hit", distance: this.target.distance});
+      } else {
+        this.script.postMessage({type: "trace_miss"});
+      }
+      break;
+    case "identify":
+      if (this.target && typeof this.target.identify === "function") {
+        this.script.postMessage({type: "identified", identity: this.target.identify(this)});
+      } else {
+        this.script.postMessage({type: "no_identity"});
+      }
+      break;
+  }
+};
+
+Bot.prototype.identify = function (from) {
+  var d_x      = from.x - this.x
+    , d_y      = from.y - this.y
+    , origin_a = this.angle - Math.atan2(d_x, d_y) - Math.PI/2
+    , origin_d = Math.sqrt(d_x*d_x + d_y*d_y)
+    ;
+
+  this.script.postMessage({type: "identified_by", angle: origin_a, distance: origin_d});
+
+  return {type: "bot", name: this.name};
 };
 
 Bot.prototype.trace = function () {
@@ -157,22 +200,12 @@ function step() {
 }
 
 window.onload = function () {
-  //return;
-
   g = document.getElementsByTagName("canvas")[0].getContext('2d');
 
-  var bot1 = new Bot("Henry")
-    , bot2 = new Bot("Charlie")
-    , bot3 = new Bot("Vicky")
+  var bot1 = new Bot("Henry", "example.js")
+    , bot2 = new Bot("Charlie", "example.js")
+    , bot3 = new Bot("Vicky", "example.js")
     ;
-
-  bot1.vy = 20;
-  bot2.vy = 30;
-  bot3.vy = 40;
-
-  bot1.va = Math.PI/8;
-  bot2.va = Math.PI/7;
-  bot3.va = Math.PI/6;
 
   bot1.neighbors = [bot2, bot3];
   bot2.neighbors = [bot1, bot3];
