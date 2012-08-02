@@ -30,7 +30,7 @@ function evade(then) {
 var sc = 0;
 
 function changeSearchRoute() {
-	postMessage({type: "update", vx: 40, vy: 0, va: Math.PI*2*(Math.random()-0.5)});
+	postMessage({type: "update", vx: 40, vy: 0, va: Math.PI*(Math.random()-0.5)});
 }
 
 function continueSearch() {
