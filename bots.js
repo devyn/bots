@@ -62,6 +62,8 @@ Bot.prototype.processMessage = function (message) {
 };
 
 Bot.prototype.identify = function (from) {
+  console.log(this.name + " identified by " + from.name);
+
   var d_x      = from.x - this.x
     , d_y      = from.y - this.y
     , origin_a = this.angle - Math.atan2(d_x, d_y) - Math.PI/2
