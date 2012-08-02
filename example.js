@@ -5,6 +5,13 @@ var timer
   , identify_queue = []
   ;
 
+function stop() {
+  clearTimeout(timer);
+  timer = null;
+  trace_queue    = [];
+  identify_queue = [];
+}
+
 function log(message) {
   postMessage({type: "log", message: message});
 }
@@ -24,6 +31,8 @@ function identify() {
 }
 
 function evade(then) {
+  stop();
+
   postMessage({type: "update", vx: 0, vy: -60, va: Math.PI/6});
 
   timer = setTimeout(then, 1000);
@@ -52,16 +61,11 @@ function continueSearch() {
 }
 
 function search() {
+  stop();
+
   sc = 0;
   changeSearchRoute();
   continueSearch();
-}
-
-function stop() {
-  clearTimeout(timer);
-  timer = null;
-  trace_queue    = [];
-  identify_queue = [];
 }
 
 function identifiedBy(angle, distance) {
