@@ -117,7 +117,7 @@ Bot.prototype.rayIntersections = function (origin_x, origin_y, angle, callback) 
   }
 };
 
-Bot.prototype.step = function (dt) {
+Bot.prototype.step = function (dt, width, height) {
   var s = dt / 1000;
 
   this.a += this.va*s;
@@ -126,6 +126,22 @@ Bot.prototype.step = function (dt) {
 
   this.x += (cos_a*this.vx - sin_a*this.vy)*s;
   this.y += (cos_a*this.vy - sin_a*this.vx)*s;
+
+  if (this.x-this.radius < 0) {
+    this.x = this.radius;
+  }
+
+  if (this.y-this.radius < 0) {
+    this.y = this.radius;
+  }
+
+  if (width && this.x+this.radius >= width) {
+    this.x = width-this.radius;
+  }
+
+  if (height && this.y+this.radius >= height) {
+    this.y = height-this.radius;
+  }
 
   this.target = this.trace();
 };
