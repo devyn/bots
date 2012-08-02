@@ -66,7 +66,7 @@ Bot.prototype.processMessage = function (message) {
 Bot.prototype.identify = function (from) {
   var d_x      = from.x - this.x
     , d_y      = from.y - this.y
-    , origin_a = from.angle - Math.atan2(d_x, d_y) - Math.PI/2
+    , origin_a = from.a - Math.atan2(d_y, d_x) - Math.PI/2
     , origin_d = Math.sqrt(d_x*d_x + d_y*d_y)
     ;
 
