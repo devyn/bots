@@ -36,7 +36,8 @@ function changeSearchRoute() {
 function continueSearch() {
 	trace_queue.push(function (distance) {
 		if (distance) {
-			log("I saw something " + distance + " away. Checking it out.");
+			log("I saw something " + distance.toFixed(2) + " pixels away. Checking it out.");
+			postMessage({type: "update", vx: 0, vy: 0, va: 0});
 			identify();
 		} else {
 			if (++sc >= 3) { sc = 0; changeSearchRoute(); }
