@@ -26,7 +26,7 @@ function identify() {
 function evade(then) {
   postMessage({type: "update", vx: 0, vy: -60, va: Math.PI/6});
 
-  setTimeout(then, 1000);
+  timer = setTimeout(then, 1000);
 }
 
 var sc = 0;
