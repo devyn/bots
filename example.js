@@ -17,6 +17,8 @@ function log(message) {
 }
 
 function identify() {
+  stop();
+
   identify_queue.push(function (identity) {
     if (identity) {
       log("I've identified the "+identity.type+", "+identity.name);
@@ -45,15 +47,19 @@ function changeSearchRoute() {
 }
 
 function continueSearch() {
+  stop();
+
   trace_queue.push(function (distance) {
     if (distance) {
       log("I saw something " + distance.toFixed(2) + " pixels away. Checking it out.");
       postMessage({type: "update", vx: 0, vy: 0, va: 0});
       identify();
     } else {
-      if (++sc >= 4) { sc = 0; changeSearchRoute(); }
-
-      timer = setTimeout(continueSearch, 250);
+      if (++sc >= 4) {
+        search();
+      } else {
+        timer = setTimeout(continueSearch, 250);
+      }
     }
   });
 
