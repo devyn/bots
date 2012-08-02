@@ -55,7 +55,7 @@ function continueSearch() {
       postMessage({type: "update", vx: 0, vy: 0, va: 0});
       identify();
     } else {
-      if (++sc >= 4) {
+      if (sc++ >= 4) {
         search();
       } else {
         timer = setTimeout(continueSearch, 250);
