@@ -1,3 +1,5 @@
+// vim:ts=2:sw=2:et
+
 var timer
   , trace_queue    = []
   , identify_queue = []
