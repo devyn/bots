@@ -51,7 +51,7 @@ function continueSearch() {
       postMessage({type: "update", vx: 0, vy: 0, va: 0});
       identify();
     } else {
-      if (++sc >= 3) { sc = 0; changeSearchRoute(); }
+      if (++sc >= 4) { sc = 0; changeSearchRoute(); }
 
       timer = setTimeout(continueSearch, 250);
     }
