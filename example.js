@@ -71,7 +71,7 @@ function identifiedBy(angle, direction) {
 function collision() {
 	stop();
 
-	postMessage({type: "update", vx: 0, vy: 40, va: Math.PI});
+	postMessage({type: "update", vx: 0, vy: 40, va: Math.PI/8});
 
 	timer = setTimeout(search, 1000);
 }
