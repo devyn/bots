@@ -66,10 +66,16 @@ function continueSearch() {
   postMessage({type: "trace"});
 }
 
+var lastSearch;
+
 function search() {
   stop();
 
-  log("Searching.");
+  var now = Date.now();
+
+  log("Searching. " + (now - lastSearch) + " ms");
+
+  lastSearch = now;
 
   sc = 0;
   changeSearchRoute();
