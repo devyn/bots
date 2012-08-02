@@ -22,7 +22,7 @@ function identify() {
 }
 
 function evade(then) {
-	postMessage({type: "update", vx: 0, vy: -40, va: Math.PI/6});
+	postMessage({type: "update", vx: 0, vy: -60, va: Math.PI/6});
 
 	setTimeout(then, 1000);
 }
@@ -72,7 +72,7 @@ function identifiedBy(angle, direction) {
 
 	timer = setTimeout(function () {
 		identify();
-	}, angle/Math.PI*sign*1000);
+	}, Math.abs(angle/Math.PI)*1000);
 }
 
 function collision() {
