@@ -73,7 +73,7 @@ function identifiedBy(angle, distance) {
   var sign = 1;
   if (angle < 0) sign = -1;
 
-  postMessage({type: "update", vx: 0, vy: 0, va: angle});
+  postMessage({type: "update", vx: 0, vy: 0, va: Math.PI * sign});
 
   sc = 0;
   continueSearch();
