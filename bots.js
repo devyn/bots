@@ -232,6 +232,7 @@ function step() {
 window.onload = function () {
   g = document.getElementsByTagName("canvas")[0].getContext('2d');
 
+  /*
   var bot1 = new Bot("oftn-bot",  "example.js")
     , bot2 = new Bot("ecmabot",   "example.js")
     , bot3 = new Bot("valsi",     "example.js")
@@ -246,6 +247,9 @@ window.onload = function () {
   bot5.neighbors = [bot1, bot2, bot3, bot4];
 
   bots = [bot1, bot2, bot3, bot4, bot5];
+  */
+
+  bots = [new Bot("Test", "example.js")];
 
   anim = requestAnimationFrame(step, frameRate);
 }
