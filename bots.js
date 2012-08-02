@@ -232,16 +232,20 @@ function step() {
 window.onload = function () {
   g = document.getElementsByTagName("canvas")[0].getContext('2d');
 
-  var bot1 = new Bot("Henry", "example.js")
-    , bot2 = new Bot("Charlie", "example.js")
-    , bot3 = new Bot("Vicky", "example.js")
+  var bot1 = new Bot("oftn-bot",  "example.js")
+    , bot2 = new Bot("ecmabot",   "example.js")
+    , bot3 = new Bot("valsi",     "example.js")
+    , bot4 = new Bot("lambdabot", "example.js")
+    , bot5 = new Bot("ubottu",    "example.js")
     ;
 
-  bot1.neighbors = [bot2, bot3];
-  bot2.neighbors = [bot1, bot3];
-  bot3.neighbors = [bot1, bot2];
+  bot1.neighbors = [bot2, bot3, bot4, bot5];
+  bot2.neighbors = [bot1, bot3, bot4, bot5];
+  bot3.neighbors = [bot1, bot2, bot4, bot5];
+  bot4.neighbors = [bot1, bot2, bot3, bot5];
+  bot5.neighbors = [bot1, bot2, bot3, bot4];
 
-  bots = [bot1, bot2, bot3];
+  bots = [bot1, bot2, bot3, bot4, bot5];
 
   anim = requestAnimationFrame(step, frameRate);
 }
