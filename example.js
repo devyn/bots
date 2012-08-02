@@ -66,16 +66,8 @@ function continueSearch() {
   postMessage({type: "trace"});
 }
 
-var lastSearch;
-
 function search() {
   stop();
-
-  var now = Date.now();
-
-  log("Searching. " + (now - lastSearch) + " ms");
-
-  lastSearch = now;
 
   sc = 0;
   changeSearchRoute();
@@ -98,7 +90,7 @@ function identifiedBy(angle, distance) {
 }
 
 function collision() {
-  //stop(); search();
+  // Ignore, for now.
 }
 
 onmessage = function (event) {
