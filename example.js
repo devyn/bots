@@ -67,8 +67,8 @@ function stop() {
 function identifiedBy(angle, distance) {
   stop();
 
-  log("I've been discovered! Returning fire, " + (angle*(180/Math.PI)).toFixed(2) +
-      " degrees and " + distance.toFixed(2) + " pixels away.");
+  log("I've been discovered! Returning fire, " + angle.toFixed(2) +
+      " radians and " + distance.toFixed(2) + " pixels away.");
 
   var sign = 1;
   if (angle < 0) sign = -1;
