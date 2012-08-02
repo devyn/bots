@@ -35,10 +35,9 @@ function Bot(name, script) {
 }
 
 Bot.prototype.processMessage = function (message) {
-  console.log(message);
   switch (message.type) {
     case "log":
-      console.log("<"+this.name+"> "+msg[1]);
+      console.log("<"+this.name+"> "+message.message);
       break;
     case "update":
       if (message.hasOwnProperty("vx")) this.vx = parseFloat(message.vx);
