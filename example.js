@@ -64,8 +64,11 @@ function stop() {
   identify_queue = [];
 }
 
-function identifiedBy(angle, direction) {
+function identifiedBy(angle, distance) {
   stop();
+
+  log("I've been discovered! Returning fire, " + (angle*(180/Math.PI)).toFixed(2) +
+      " degrees and " + direction.toFixed(2) + " pixels away.");
 
   var sign = 1;
   if (angle < 0) sign = -1;
@@ -106,7 +109,7 @@ onmessage = function (event) {
         identify_queue.shift()(null);
       break;
     case "identified_by":
-      identifiedBy(message.angle, message.direction);
+      identifiedBy(message.angle, message.distance);
       break;
     case "collision":
       collision();
