@@ -209,7 +209,7 @@ function step() {
   g.fillRect(0,0,g.canvas.width,g.canvas.height);
 
   for (var i = 0; i < bots.length; i++) {
-    bots[i].step(dt);
+    bots[i].step(dt, g.canvas.width, g.canvas.height);
     bots[i].draw(g);
   }
 
