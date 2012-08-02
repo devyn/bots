@@ -92,7 +92,7 @@ function identifiedBy(angle, distance) {
 }
 
 function collision() {
-  stop(); search();
+  //stop(); search();
 }
 
 onmessage = function (event) {
