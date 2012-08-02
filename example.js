@@ -26,7 +26,7 @@ function search() {
 		if (distance) {
 			identify();
 		} else {
-			postMessage({type: "update", vx: 30, vy: 0, va: Math.PI/2*(Math.random()-0.5)});
+			postMessage({type: "update", vx: 30, vy: 0, va: Math.PI/4});
 
 			timer = setTimeout(search, 250);
 		}
