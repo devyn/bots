@@ -229,8 +229,15 @@ function step() {
   anim = requestAnimationFrame(step, frameRate);
 }
 
+function resizeCanvas() {
+  g.canvas.width  = window.innerWidth;
+  g.canvas.height = window.innerHeight;
+}
+
 window.onload = function () {
   g = document.getElementsByTagName("canvas")[0].getContext('2d');
+
+  resizeCanvas();
 
   ///*
   var bot1 = new Bot("oftn-bot",  "example.js")
@@ -253,3 +260,5 @@ window.onload = function () {
 
   anim = requestAnimationFrame(step, frameRate);
 }
+
+window.onresize = resizeCanvas;
