@@ -245,15 +245,21 @@ window.onload = function () {
     , bot3 = new Bot("valsi",     "example.js")
     , bot4 = new Bot("lambdabot", "example.js")
     , bot5 = new Bot("ubottu",    "example.js")
+    , bot6 = new Bot("phrik",     "example.js")
+    , bot7 = new Bot("NickServ",  "example.js")
+    , bot8 = new Bot("ChanServ",  "example.js")
     ;
 
-  bot1.neighbors = [bot2, bot3, bot4, bot5];
-  bot2.neighbors = [bot1, bot3, bot4, bot5];
-  bot3.neighbors = [bot1, bot2, bot4, bot5];
-  bot4.neighbors = [bot1, bot2, bot3, bot5];
-  bot5.neighbors = [bot1, bot2, bot3, bot4];
+  bot1.neighbors = [bot2, bot3, bot4, bot5, bot6, bot7, bot8];
+  bot2.neighbors = [bot1, bot3, bot4, bot5, bot6, bot7, bot8];
+  bot3.neighbors = [bot1, bot2, bot4, bot5, bot6, bot7, bot8];
+  bot4.neighbors = [bot1, bot2, bot3, bot5, bot6, bot7, bot8];
+  bot5.neighbors = [bot1, bot2, bot3, bot4, bot6, bot7, bot8];
+  bot6.neighbors = [bot1, bot2, bot3, bot4, bot5, bot7, bot8];
+  bot7.neighbors = [bot1, bot2, bot3, bot4, bot5, bot6, bot8];
+  bot8.neighbors = [bot1, bot2, bot3, bot4, bot5, bot6, bot7];
 
-  bots = [bot1, bot2, bot3, bot4, bot5];
+  bots = [bot1, bot2, bot3, bot4, bot5, bot6, bot7, bot8];
   //*/
 
   //bots = [new Bot("Test", "example.js")];
