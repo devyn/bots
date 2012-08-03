@@ -1,22 +1,22 @@
 // vim:ts=2:sw=2:et
 
-var colors = {
-  0: ["#fff", "#000"],
-  1: ["#0ff", "#f00"],
-  2: ["#00f", "#ff0"],
-  3: ["#f0f", "#0f0"],
-  4: ["#ff0", "#00f"],
-  5: ["#f00", "#0ff"],
-  6: ["#0f0", "#f0f"],
-  7: ["#000", "#fff"]
-};
+var colors = [["#fff", "#000"]
+             ,["#0ff", "#f00"]
+             ,["#00f", "#ff0"]
+             ,["#f0f", "#0f0"]
+             ,["#ff0", "#00f"]
+             ,["#f00", "#0ff"]
+             ,["#0f0", "#f0f"]
+             ,["#000", "#fff"]];
 
 var g;
 
 function Bot(name, script) {
   this.name   = name;
-  this.color  = colors[Math.floor(Math.random() * 8)];
+  this.color  = colors.shift();
   this.radius = 10;
+
+  colors.push(this.color);
 
   this.neighbors = [];
 
