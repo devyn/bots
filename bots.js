@@ -11,6 +11,8 @@ var colors = {
   7: ["#000", "#fff"]
 };
 
+var g;
+
 function Bot(name, script) {
   this.name   = name;
   this.color  = colors[Math.floor(Math.random() * 8)];
@@ -18,8 +20,8 @@ function Bot(name, script) {
 
   this.neighbors = [];
 
-  this.x    = 160 + Math.random() * 320;
-  this.y    = 120 + Math.random() * 240;
+  this.x    = Math.random() * g.canvas.width;
+  this.y    = Math.random() * g.canvas.height;
   this.a    = 0;
 
   this.vx   = 0; // pixels per second, relative to angle
@@ -209,8 +211,7 @@ window.requestAnimationFrame = window.requestAnimationFrame
                             || window.mozRequestAnimationFrame
                             || window.msRequestAnimationFrame;
 
-var g
-  , bots
+var bots
   , anim
   , frameRate = 30
   ;
