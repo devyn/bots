@@ -243,7 +243,7 @@ window.onload = function () {
   ///*
   var bot1 = new Bot("oftn-bot",  "example.js")
     , bot2 = new Bot("ecmabot",   "example.js")
-    , bot3 = new Bot("valsi",     "example.js")
+    , bot3 = new Bot("purr",      "example.js")
     , bot4 = new Bot("lambdabot", "example.js")
     , bot5 = new Bot("ubottu",    "example.js")
     , bot6 = new Bot("phrik",     "example.js")
